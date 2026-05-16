@@ -1,0 +1,378 @@
+/* ─── Overlay (auth screen) ──────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 25, 13, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.25s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.authBox {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(6,25,13,0.30);
+  animation: scaleIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.authIcon { font-size: 2.8rem; }
+.authBox h3 { font-family: 'Noto Serif', Georgia, serif; color: #1B2E20; font-size: 1.4rem; margin: 0; }
+.authBox p  { color: #434843; font-size: 0.875rem; margin: 0; }
+.pinRow { width: 100%; }
+.pinError { font-size: 0.82rem; color: #ba1a1a; font-weight: 500; margin: 0; }
+.authBtns { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+.hint { font-size: 0.75rem; color: #b0b5b0; margin: 0; }
+
+/* ─── Main panel ─────────────────────────────────────────────────────────── */
+.panel {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 420px;
+  max-height: 88vh;
+  background: #0e1f13;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -8px 48px rgba(0,0,0,0.40);
+  z-index: 8000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  animation: slideUp 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(48px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.panelTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.panelTitleIcon { font-size: 1.4rem; }
+.panelTitle strong { color: white; font-size: 0.95rem; display: block; line-height: 1.2; }
+.panelTitle small  { color: rgba(255,255,255,0.45); font-size: 0.72rem; display: block; margin-top: 2px; }
+.closeBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.70);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  transition: background 200ms;
+  flex-shrink: 0;
+}
+.closeBtn:hover { background: rgba(255,255,255,0.20); }
+
+/* ─── Stats row ──────────────────────────────────────────────────────────── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.statCard {
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: #0e1f13;
+}
+.statValue { font-family: 'Noto Serif', Georgia, serif; font-size: 1.05rem; color: #F47D31; font-weight: 700; }
+.statLabel { font-size: 0.62rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ─── Tabs ───────────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.tab {
+  flex: 1;
+  padding: 11px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.45);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms;
+  border-bottom: 2px solid transparent;
+  font-family: 'Inter', sans-serif;
+}
+.tab:hover { color: rgba(255,255,255,0.75); }
+.tabActive { color: #F47D31; border-bottom-color: #F47D31; }
+
+/* ─── Tab content (scrollable) ───────────────────────────────────────────── */
+.tabContent { overflow-y: auto; flex: 1; padding: 16px; }
+
+/* ─── Trek list ──────────────────────────────────────────────────────────── */
+.trekList { display: flex; flex-direction: column; gap: 10px; }
+.sectionTitle {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.40);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.trekItem {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  transition: border-color 200ms;
+}
+.trekItem:hover { border-color: rgba(255,255,255,0.16); }
+
+.trekRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+}
+.trekInfo { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.trekName { font-size: 0.85rem; font-weight: 600; color: white; }
+.editedBadge {
+  font-size: 0.65rem;
+  background: rgba(244,125,49,0.20);
+  color: #F47D31;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.trekMeta { display: flex; align-items: center; gap: 10px; }
+.trekPrice { font-size: 0.82rem; font-weight: 700; color: #F47D31; }
+.hasSeats { font-size: 0.72rem; color: rgba(255,255,255,0.50); }
+.noSeats  { font-size: 0.72rem; color: #ba1a1a; font-weight: 600; }
+.chevron  { font-size: 0.65rem; color: rgba(255,255,255,0.40); }
+
+/* Occupancy bar */
+.occupancyBar  { height: 3px; background: rgba(255,255,255,0.08); margin: 0; }
+.occupancyFill { height: 100%; border-radius: 0 2px 2px 0; transition: width 500ms ease; }
+.occupancyLabel {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.35);
+  display: block;
+  padding: 4px 14px 8px;
+  line-height: 1;
+}
+
+/* Editor */
+.editor { padding: 14px; border-top: 1px solid rgba(255,255,255,0.08); }
+.editorGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.editorField { display: flex; flex-direction: column; gap: 5px; }
+.editorField label {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.50);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.editorField .input-field {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+  color: white !important;
+  font-size: 0.85rem !important;
+  padding: 8px 10px !important;
+}
+.editorField .input-field:focus {
+  border-color: #F47D31 !important;
+  box-shadow: 0 0 0 2px rgba(244,125,49,0.20) !important;
+}
+.editorField select option { background: #1B2E20; color: white; }
+.editorActions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.resetBtn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.60);
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: all 200ms;
+}
+.resetBtn:hover { background: rgba(255,255,255,0.15); color: white; }
+
+/* ─── Bookings ───────────────────────────────────────────────────────────── */
+.bookingsList { display: flex; flex-direction: column; gap: 10px; }
+.bookingsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.bookingsCount  { font-size: 0.75rem; color: rgba(255,255,255,0.45); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.bookingsRevenue { font-size: 0.82rem; color: #F47D31; font-weight: 700; }
+
+.bookingCard {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bookingTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.bookingName  { font-size: 0.9rem; font-weight: 600; color: white; display: block; }
+.bookingId    { font-size: 0.68rem; color: rgba(255,255,255,0.35); font-family: monospace; }
+.bookingAmount { font-size: 1rem; font-weight: 700; color: #F47D31; flex-shrink: 0; }
+.bookingMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.50);
+}
+.bookingFooter { display: flex; justify-content: space-between; align-items: center; }
+.bookingTime { font-size: 0.68rem; color: rgba(255,255,255,0.30); }
+.bookingRef  { font-size: 0.68rem; color: rgba(244,125,49,0.60); font-family: monospace; }
+
+.emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.emptyState span { font-size: 2.5rem; opacity: 0.5; }
+.emptyState p    { font-size: 0.82rem; color: rgba(255,255,255,0.35); margin: 0; }
+
+/* ─── Analytics ──────────────────────────────────────────────────────────── */
+.analytics { display: flex; flex-direction: column; gap: 12px; }
+
+.analyticsRow {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.analyticsInfo { display: flex; justify-content: space-between; align-items: flex-start; }
+.analyticsName  { font-size: 0.85rem; font-weight: 600; color: white; }
+.analyticsStats { font-size: 0.72rem; color: rgba(255,255,255,0.45); text-align: right; }
+.analyticsBarWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.analyticsBar {
+  height: 6px;
+  border-radius: 999px;
+  flex: 1;
+  min-width: 0;
+  transition: width 600ms ease;
+  background: #2d7a3f;
+}
+.analyticsPercent { font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.60); width: 32px; text-align: right; flex-shrink: 0; }
+.analyticsSeats { display: flex; gap: 6px; font-size: 0.72rem; font-weight: 600; }
+
+.analyticsSummary {
+  background: rgba(244,125,49,0.08);
+  border: 1px solid rgba(244,125,49,0.20);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 4px;
+}
+.analyticsSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.8rem;
+}
+.analyticsSummaryRow:last-child { border-bottom: none; }
+.analyticsSummaryRow span   { color: rgba(255,255,255,0.50); }
+.analyticsSummaryRow strong { color: #F47D31; font-weight: 700; }
+
+/* ─── Toast notification ─────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: calc(88vh + 12px);
+  right: 24px;
+  background: #1B2E20;
+  color: white;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  z-index: 9100;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.30);
+  animation: toastIn 0.3s ease both;
+  pointer-events: none;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .panel { width: 100%; border-radius: 20px 20px 0 0; }
+  .editorGrid { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}

@@ -1,0 +1,301 @@
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.heroImg {
+  object-fit: cover;
+  object-position: center 30%;
+}
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(6, 25, 13, 0.85) 0%,
+    rgba(27, 46, 32, 0.65) 50%,
+    rgba(6, 25, 13, 0.50) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  padding-top: 100px;
+  padding-bottom: 80px;
+  max-width: 760px;
+}
+
+.heroTitle {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+.heroTitle em {
+  font-style: italic;
+  color: #F47D31;
+}
+
+.heroDesc {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.80);
+  max-width: 560px;
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+
+.heroCtas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+
+.heroStats {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 32px;
+  width: fit-content;
+}
+.heroStat { display: flex; flex-direction: column; gap: 2px; }
+.heroStatValue {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #F47D31;
+  line-height: 1;
+}
+.heroStatLabel {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+/* Treks section */
+.treksSection { padding-top: 80px; }
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.sectionHeader .label-caps { margin-bottom: 12px; display: block; }
+.sectionHeader h2 { margin-bottom: 14px; }
+.sectionDesc {
+  color: #434843;
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.selectionHint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(244, 125, 49, 0.08);
+  border: 1px solid rgba(244, 125, 49, 0.25);
+  border-radius: 9999px;
+  padding: 10px 20px;
+  width: fit-content;
+  margin: 0 auto 40px;
+  font-size: 0.875rem;
+  color: #434843;
+}
+.hintIcon { font-size: 1.1rem; }
+
+.treksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* Features */
+.features {
+  position: relative;
+  overflow: hidden;
+  padding: 96px 0;
+}
+.featuresBg { position: absolute; inset: 0; }
+.featuresImg { object-fit: cover; }
+.featuresOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 25, 13, 0.88);
+}
+
+.featuresGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.featureCard {
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.featureCard:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.12);
+}
+.featureIcon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+/* CTA Banner */
+.ctaBanner { background: #f2f4f2; }
+
+/* ── Proceed to Pay Floating Bar ───────────────────────────────── */
+.payBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  animation: slideUpBar 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+@keyframes slideUpBar {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.payBarInner {
+  background: rgba(6, 25, 13, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(182, 204, 184, 0.20);
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.30);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.payBarInfo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+  min-width: 0;
+}
+
+.payBarSelected { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.payBarSelectedLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.50);
+}
+.payBarTrekName {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.payBarDivider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+
+.payBarMeta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.payBarMetaItem {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.65);
+  white-space: nowrap;
+}
+
+.payBarActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.payBarPrice { display: flex; flex-direction: column; align-items: flex-end; }
+.payBarPriceValue {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #F47D31;
+  line-height: 1;
+}
+.payBarPriceLabel { font-size: 0.68rem; color: rgba(255,255,255,0.50); text-align: right; margin-top: 2px; }
+
+.payBtn {
+  animation: pulseGlow 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(244,125,49,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(244,125,49,0); }
+}
+
+.payBarClose {
+  background: rgba(255,255,255,0.10);
+  border: none;
+  color: rgba(255,255,255,0.60);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms;
+  flex-shrink: 0;
+}
+.payBarClose:hover { background: rgba(255,255,255,0.20); color: white; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .treksGrid { grid-template-columns: repeat(2, 1fr); }
+  .featuresGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .treksGrid { grid-template-columns: 1fr; }
+  .featuresGrid { grid-template-columns: 1fr 1fr; }
+  .heroStats { grid-template-columns: repeat(2, auto); }
+  .payBarInner { flex-direction: column; align-items: flex-start; padding: 16px 20px; gap: 16px; }
+  .payBarActions { width: 100%; justify-content: space-between; }
+  .payBarMeta { gap: 12px; }
+}
+@media (max-width: 480px) {
+  .featuresGrid { grid-template-columns: 1fr; }
+  .payBarInfo { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .payBarDivider { display: none; }
+}

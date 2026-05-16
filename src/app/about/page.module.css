@@ -1,0 +1,121 @@
+.page { padding-top: 68px; min-height: 100vh; background: #f8faf8; }
+
+/* Hero */
+.hero {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.heroBg { position: absolute; inset: 0; }
+.heroImg { object-fit: cover; object-position: center 40%; }
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(6,25,13,0.88) 0%, rgba(6,25,13,0.50) 60%, transparent 100%);
+}
+.heroContent { position: relative; z-index: 2; max-width: 640px; }
+.heroTitle { color: white; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 16px; }
+.heroDesc { color: rgba(255,255,255,0.78); font-size: 1.05rem; max-width: 500px; margin: 0; }
+
+/* Story */
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.storyText h2 { margin-bottom: 16px; }
+.storyText p { color: #434843; line-height: 1.8; }
+.storyImage {}
+.roundedImg {
+  border-radius: 20px;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 20px 48px rgba(27,46,32,0.14);
+}
+
+/* Team */
+.teamSection { background: #f2f4f2; }
+.sectionHeader { text-align: center; margin-bottom: 48px; }
+.sectionHeader .label-caps { margin-bottom: 8px; display: block; }
+.sectionHeader h2 { margin-bottom: 12px; }
+.sectionHeader p { color: #434843; }
+.teamGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.teamCard {
+  background: white;
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(27,46,32,0.07);
+  border: 1px solid #eceeec;
+  transition: transform 0.3s ease;
+}
+.teamCard:hover { transform: translateY(-6px); }
+.teamAvatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #d1e8d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 16px;
+}
+.teamName { font-family: 'Noto Serif', Georgia, serif; color: #1B2E20; font-size: 1.1rem; margin-bottom: 4px; }
+.teamRole { font-size: 0.875rem; color: #4f6353; font-weight: 500; margin-bottom: 4px; }
+.teamExp { font-size: 0.78rem; color: #737872; }
+
+/* Safety */
+.safetySection { position: relative; overflow: hidden; padding: 96px 0; }
+.safetyBg { position: absolute; inset: 0; }
+.safetyImg { object-fit: cover; }
+.safetyOverlay { position: absolute; inset: 0; background: rgba(6,25,13,0.88); }
+.safetyGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.safetyCard {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 28px 20px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease;
+}
+.safetyCard:hover { transform: translateY(-4px); }
+.safetyIcon { font-size: 2rem; display: block; margin-bottom: 12px; }
+.safetyTitle { font-family: 'Noto Serif', Georgia, serif; color: white; font-size: 1rem; margin-bottom: 8px; }
+.safetyDesc { color: rgba(255,255,255,0.65); font-size: 0.82rem; line-height: 1.6; margin: 0; }
+
+/* LNT */
+.lnt { max-width: 900px; margin: 0 auto; }
+.lntCard {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #1B2E20, #2d4a32);
+  border-radius: 20px;
+  padding: 40px 36px;
+}
+.lntIcon { font-size: 3rem; flex-shrink: 0; }
+.lntTitle { font-family: 'Noto Serif', Georgia, serif; color: white; font-size: 1.5rem; margin-bottom: 12px; }
+.lntText { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.8; margin: 0; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .story { grid-template-columns: 1fr; gap: 32px; }
+  .teamGrid { grid-template-columns: 1fr; }
+  .safetyGrid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .safetyGrid { grid-template-columns: 1fr; }
+  .lntCard { flex-direction: column; }
+}

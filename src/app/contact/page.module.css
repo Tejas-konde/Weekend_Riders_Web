@@ -1,0 +1,147 @@
+.page { padding-top: 88px; min-height: 100vh; background: #f8faf8; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  padding: 64px 24px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ─── Info column ────────────────────────────────────────────────────────── */
+.infoCol {}
+.title {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #1B2E20;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.desc {
+  color: #434843;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 36px;
+}
+
+.contactCards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+.contactCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #eceeec;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(27,46,32,0.05);
+  transition: all 0.25s ease;
+}
+.contactCard:hover {
+  transform: translateX(6px);
+  border-color: #F47D31;
+  box-shadow: 0 4px 16px rgba(244,125,49,0.12);
+}
+.contactIcon  { font-size: 1.5rem; flex-shrink: 0; }
+.contactLabel { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #737872; font-weight: 600; margin-bottom: 2px; }
+.contactValue { display: block; font-size: 0.95rem; font-weight: 600; color: #1B2E20; }
+.contactArrow { margin-left: auto; color: #c3c8c1; font-size: 1rem; transition: color 200ms; }
+.contactCard:hover .contactArrow { color: #F47D31; }
+
+.quickLinks {}
+.quickTitle { font-family: 'Noto Serif', Georgia, serif; color: #1B2E20; font-size: 1rem; margin-bottom: 14px; }
+.quickGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.quickLink {
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #eceeec;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #434843;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+.quickLink:hover { background: #1B2E20; color: white; border-color: #1B2E20; }
+
+/* ─── Form column ────────────────────────────────────────────────────────── */
+.formCol {}
+.formCard {
+  background: white;
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 8px 40px rgba(27,46,32,0.10);
+  border: 1px solid #eceeec;
+}
+.formTitle {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 1.4rem;
+  color: #1B2E20;
+  margin-bottom: 6px;
+}
+.formSubtitle { font-size: 0.875rem; color: #737872; margin-bottom: 24px; }
+.form { display: flex; flex-direction: column; gap: 18px; }
+
+/* Validation */
+.inputError { border-color: #ba1a1a !important; }
+.errMsg { font-size: 0.75rem; color: #ba1a1a; font-weight: 500; margin-top: 2px; display: block; }
+
+/* Submit button */
+.submitBtn { justify-content: center; }
+.loadingSpinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.loadingSpinner::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── Success state ──────────────────────────────────────────────────────── */
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 24px 0;
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.successIcon { font-size: 3.5rem; animation: bounce 0.5s ease 0.2s both; }
+@keyframes bounce {
+  from { transform: scale(0.5); opacity: 0; }
+  60%  { transform: scale(1.2); }
+  to   { transform: scale(1); opacity: 1; }
+}
+.successTitle {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 1.6rem;
+  color: #1B2E20;
+  margin: 0;
+}
+.successDesc { color: #434843; font-size: 0.95rem; line-height: 1.6; margin: 0; max-width: 340px; }
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; gap: 40px; padding: 40px 16px 60px; }
+  .quickGrid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 480px) {
+  .quickGrid { grid-template-columns: 1fr 1fr; }
+  .formCard { padding: 24px 20px; }
+}
